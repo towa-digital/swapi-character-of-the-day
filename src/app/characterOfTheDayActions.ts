@@ -23,6 +23,7 @@ export async function validateCookie(force = false) {
       JSON.stringify({ id: characterId, timestamp: now.toISOString() }),
       {
         sameSite: "lax",
+        maxAge: 24 * 60 * 60, // 24 hours in seconds
       }
     );
 
@@ -43,6 +44,7 @@ export async function validateCookie(force = false) {
       JSON.stringify({ id: characterId, timestamp: now.toISOString() }),
       {
         sameSite: "lax",
+        maxAge: 24 * 60 * 60, // 24 hours in seconds
       }
     );
 
