@@ -7,6 +7,7 @@ export const fetchPeople = async ({
 }: {
   id: string;
 }): Promise<SwapiPeople> => {
+  console.log("fetchPeople", id);
   try {
     const response = await fetch(`${swapiBaseURL}/people/${id}`);
     return (await response.json()) as SwapiPeople;

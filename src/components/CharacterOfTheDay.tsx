@@ -7,7 +7,7 @@ import ColorPicker from "@/components/ColorPicker";
 import { calcAverageRgb } from "@/utils/colors";
 import { SwapiPeople } from "@types";
 import clsx from "clsx";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Button,
   Color,
@@ -16,20 +16,13 @@ import {
   type Selection,
 } from "react-aria-components";
 import { getScaleXFactor } from "@/utils/scaling";
-import {
-  refetchCharacter,
-  validateCookie,
-} from "@/app/characterOfTheDayActions";
+import { revalidate } from "@/app/characterOfTheDayActions";
 
 export default function CharacterOfTheDay({
   character,
 }: {
   character: SwapiPeople;
 }) {
-  useEffect(() => {
-    validateCookie();
-  }, []);
-
   const getColor = (color: string) => {
     if (color === "unknown" || color === "n/a" || color === "none") {
       return "transparent";
@@ -115,7 +108,7 @@ export default function CharacterOfTheDay({
         <span>Don&apos;t like this character?</span>
         <Button
           className="hover:cursor-pointer p-2 bg-purple-500 rounded-lg hover:bg-purple-600 transition-all hover:shadow-xl font-bold"
-          onPress={() => refetchCharacter()}
+          onPress={() => revalidate()}
         >
           Get new one!
         </Button>

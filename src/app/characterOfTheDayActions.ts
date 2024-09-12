@@ -7,7 +7,14 @@ import { cookies } from "next/headers";
 
 const cotdCookieName = "characterOfTheDay";
 
+export async function revalidate() {
+  cookies().delete(cotdCookieName);
+  revalidatePath("/");
+}
+
 export async function validateCookie(force = false) {
+  console.log("validateCookie");
+
   const total = await fetchPeopleTotal();
 
   const characterOTDCookie = cookies().get(cotdCookieName);
@@ -48,6 +55,8 @@ export async function validateCookie(force = false) {
 
     return;
   }
+
+  console.log("Cookie is still valid");
 }
 
 export async function fetchCharacterOfTheDay() {
@@ -55,15 +64,11 @@ export async function fetchCharacterOfTheDay() {
 
   const characterOTDCookie = cookies().get(cotdCookieName);
 
+  console.log("fetchCharacterOfTheDay", characterOTDCookie);
+
   const characterId = characterOTDCookie
     ? JSON.parse(characterOTDCookie.value).id
     : pollId(total);
 
   return await fetchPeople({ id: characterId.toString() });
 }
-
-export const refetchCharacter = async () => {
-  await validateCookie(true);
-
-  revalidatePath("/");
-};
