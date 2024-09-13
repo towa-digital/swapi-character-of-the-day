@@ -1,29 +1,29 @@
 import clsx from "clsx";
 import {
-  Button,
   Menu,
   MenuItem,
   MenuTrigger,
   Popover,
   type Selection,
 } from "react-aria-components";
+import Button from "@/components/Button";
 
 export default function Dropdown({
   items,
   label,
   selected,
   onChange,
+  icon,
 }: {
   label: string;
   items: Iterable<{ key: string | number; label: string }>;
   selected: Selection;
   onChange: (selected: Selection) => void;
+  icon: React.ReactNode;
 }) {
   return (
     <MenuTrigger>
-      <Button className="hover:cursor-pointer p-2 bg-neutral-900 backdrop-blur-sm border border-neutral-500 rounded">
-        {label}
-      </Button>
+      <Button label={label} icon={icon} />
       <Popover>
         <Menu
           items={items}
