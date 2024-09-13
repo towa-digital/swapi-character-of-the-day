@@ -20,7 +20,7 @@ export default function ColorPicker({
   return (
     <MenuTrigger>
       <Button className="group/button bg-gradient-to-r hover:to-primary transition-all from-primary p-px rounded-full hover:cursor-pointer overflow-hidden">
-        <span className="py-[0.4375rem] ps-[0.625rem] pe-[0.875rem] bg-[#2e2e2e] group-hover/button:bg-[#183c3a] flex gap-[0.375rem] items-center rounded-full">
+        <span className="py-[0.4375rem] ps-[0.625rem] pe-[0.875rem] bg-[#2e2e2e] transition-colors group-hover/button:bg-[#183c3a] flex gap-[0.375rem] items-center rounded-full">
           <ColorSwatch color={color} className="size-3 rounded-full" />
           <span className="text-sm">{label}</span>
         </span>

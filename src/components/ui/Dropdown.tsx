@@ -6,7 +6,7 @@ import {
   Popover,
   type Selection,
 } from "react-aria-components";
-import Button from "@/components/Button";
+import Button from "@/components/ui/Button";
 
 export default function Dropdown({
   items,
