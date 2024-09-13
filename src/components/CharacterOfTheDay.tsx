@@ -96,7 +96,7 @@ export default function CharacterOfTheDay({
         {character.name}
       </h1>
 
-      <div className="[grid-area:info] flex flex-col items-start w-96 gap-1">
+      <div className="[grid-area:info] flex flex-col items-start w-80 gap-1">
         {details.map((detail) => (
           <Card key={detail.name} header={detail.name} className="w-full">
             <ul className="flex flex-col mt-[0.375rem] gap-[0.375rem]">
@@ -141,7 +141,7 @@ export default function CharacterOfTheDay({
         </Card>
       </div>
 
-      <div className="[grid-area:character] flex items-end justify-end">
+      <div className="[grid-area:character] flex items-end justify-center">
         <Character
           colors={{
             skin: getColor(character.skin_color),
