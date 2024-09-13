@@ -14,10 +14,10 @@ const config: Config = {
         primary: "#72FFF7",
       },
       backgroundImage: {
-        "landscape-1": "url('/images/landscape-1.jpg')",
-        "landscape-2": "url('/images/landscape-1.jpg')",
-        "planet-1": "url('/images/planet-1.jpg')",
-        "planet-2": "url('/images/planet-2.jpg')",
+        desert: "url('/images/desert.jpg')",
+        landscape: "url('/images/landscape.jpg')",
+        planet: "url('/images/planet.jpg')",
+        "planet-small": "url('/images/planet-small.jpg')",
       },
       fontFamily: {
         sans: ["var(--font-space-grotesk)"],

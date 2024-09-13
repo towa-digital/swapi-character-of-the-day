@@ -16,12 +16,22 @@
 
 .app-layout {
   display: grid;
-  grid-template-columns: minmax(auto, 30rem) 1fr min-content;
-  grid-template-rows: min-content 1fr min-content;
+
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content auto min-content;
   grid-template-areas:
-    "header header header"
-    "title character actions"
-    "info character actions";
+    "header"
+    "character"
+    "info";
+
+  @screen lg {
+    grid-template-columns: minmax(auto, 40rem) 1fr min-content;
+    grid-template-rows: min-content 1fr min-content;
+    grid-template-areas:
+      "header header header"
+      "title character actions"
+      "info character actions";
+  }
 }
 
 body {

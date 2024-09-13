@@ -55,15 +55,15 @@ export default function CharacterOfTheDay({
     { label: "Eye color", value: character.eye_color },
   ];
 
-  const backgrounds = {
-    galaxy: "bg-planet-1",
-    starships: "bg-planet-2",
-    planet: "bg-landscape-1",
-    landscape: "bg-landscape-2",
-  };
+  const backgrounds = [
+    { name: "Desert", class: "bg-desert" },
+    { name: "Landscape", class: "bg-landscape" },
+    { name: "Planet Small", class: "bg-planet-small" },
+    { name: "Planet", class: "bg-planet" },
+  ];
 
   const [selectedBg, setSelectedBg] = useState<Selection>(
-    new Set([backgrounds.galaxy])
+    new Set([backgrounds[0].class])
   );
 
   const [colorShirt, setColorShirt] = useState<Color>(parseColor("#994f37"));
@@ -71,26 +71,36 @@ export default function CharacterOfTheDay({
   const [colorPants, setColorPants] = useState<Color>(parseColor("#667a8c"));
 
   return (
-    <div
-      className={clsx(
-        "app-layout p-8 bg-planet-1 size-full bg-cover bg-center",
-        Array.from(selectedBg)?.[0] ?? ""
-      )}
-    >
-      <div className="[grid-area:header]">
+    <div className="app-layout p-8 size-full">
+      <div
+        className={clsx(
+          "fixed inset-1 bottom-[35%] lg:bottom-0 bg-cover bg-center z-[-1]",
+          Array.from(selectedBg)?.[0] ?? ""
+        )}
+      />
+
+      <div
+        className={clsx(
+          "fixed inset-1 top-[30%] lg:top-[50%] lg:from-50% bg-gradient-to-t from-black from-70% to-transparent z-[-1]"
+        )}
+      />
+
+      <div className="[grid-area:header] gap-4 flex justify-center lg:justify-start items-center flex-col lg:gap-20 lg:flex-row">
         <Image
           src="/images/logo.svg"
           height={28}
           width={167}
           alt="StarWars Character of the day Logo"
         />
+
+        <span className="w-full h-px bg-gradient-to-r from-transparent via-primary to to-transparent" />
       </div>
 
-      <h1 className="[grid-area:title] hyphens-auto break-words text-primary my-auto text-start text-[8.75rem] font-light leading-[0.9] tracking-[-0.6125rem]">
+      <h1 className="[grid-area:character] lg:[grid-area:title] hyphens-auto text-center text-[6.5rem] [word-break:break-word] text-primary my-auto lg:text-start lg:text-[8.75rem] font-light leading-[0.9] lg:tracking-[-0.6125rem]">
         {character.name}
       </h1>
 
-      <div className="[grid-area:info] flex flex-col items-start w-80 gap-1">
+      <div className="[grid-area:info] mt-4 lg:mt-0 flex flex-col items-start lg:w-80 gap-1">
         <Card header="Basic Informations" className="w-full">
           <ul className="flex flex-col mt-[0.375rem] gap-[0.375rem]">
             {basicInformations.map((item, index) => (
@@ -187,18 +197,18 @@ export default function CharacterOfTheDay({
           }}
           gender={character.gender}
           scaleXFactor={getScaleXFactor(character.height, character.mass)}
-          className="[&>svg]:h-[40rem]"
+          className="[&>svg]:h-[20rem] [&>svg]:w-[15rem] lg:[&>svg]:h-[40rem]"
         />
       </div>
 
-      <div className="[grid-area:actions] flex flex-col justify-end gap-4">
+      <div className="[grid-area:character] items-end lg:[grid-area:actions] flex gap-3 lg:flex-col justify-end lg:gap-4">
         <Dropdown
           label="Change Background"
           selected={selectedBg}
           onChange={setSelectedBg}
-          items={Object.entries(backgrounds).map(([label, value]) => ({
-            key: value,
-            label,
+          items={backgrounds.map((background) => ({
+            key: background.class,
+            label: background.name,
           }))}
           icon={<ImageSquare width={16} height={16} />}
         />
