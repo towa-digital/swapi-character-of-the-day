@@ -24,6 +24,8 @@ import Button from "@/components/ui/Button";
 import UserSwitch from "@/icons/UserSwitch";
 import Image from "next/image";
 import Card from "@/components/ui/Card";
+import GenderMale from "@/icons/GenderMake";
+import GenderFemale from "@/icons/GenderFemale";
 
 export default function CharacterOfTheDay({
   character,
@@ -41,24 +43,16 @@ export default function CharacterOfTheDay({
     return calcAverageRgb(color);
   };
 
-  // TODO: Refine the details
-  const details = [
-    {
-      name: "Basic information",
-      children: [
-        { id: 1, label: "Gender", value: character.gender },
-        { id: 2, label: "Height", value: character.height },
-        { id: 3, label: "Mass", value: character.mass },
-      ],
-    },
-    {
-      name: "Appreance",
-      children: [
-        { id: 4, label: "Hair color", value: character.hair_color },
-        { id: 5, label: "Skin color", value: character.skin_color },
-        { id: 6, label: "Eye color", value: character.eye_color },
-      ],
-    },
+  const basicInformations = [
+    { label: "Gender", value: character.gender },
+    { label: "Height", value: `${character.height} cm` },
+    { label: "Mass", value: `${character.mass} kg` },
+  ];
+
+  const appreance = [
+    { label: "Hair color", value: character.hair_color },
+    { label: "Skin color", value: character.skin_color },
+    { label: "Eye color", value: character.eye_color },
   ];
 
   const backgrounds = {
@@ -97,25 +91,65 @@ export default function CharacterOfTheDay({
       </h1>
 
       <div className="[grid-area:info] flex flex-col items-start w-80 gap-1">
-        {details.map((detail) => (
-          <Card key={detail.name} header={detail.name} className="w-full">
-            <ul className="flex flex-col mt-[0.375rem] gap-[0.375rem]">
-              {detail.children.map((item) => (
-                <li key={item.id} className="flex text-sm  justify-between">
-                  <Text className="tracking-[-0.035rem] opacity-70">
-                    {item.label}
-                  </Text>
-                  <Text
-                    slot="description"
-                    className="tracking-[-0.0175rem] capitalize"
-                  >
-                    {item.value}
-                  </Text>
-                </li>
-              ))}
-            </ul>
-          </Card>
-        ))}
+        <Card header="Basic Informations" className="w-full">
+          <ul className="flex flex-col mt-[0.375rem] gap-[0.375rem]">
+            {basicInformations.map((item, index) => (
+              <li
+                key={`basicInformations_${index}`}
+                className="flex text-sm justify-between"
+              >
+                <Text className="tracking-[-0.035rem] opacity-70">
+                  {item.label}
+                </Text>
+                <Text
+                  slot="description"
+                  className={clsx(
+                    "tracking-[-0.0175rem] flex items-center",
+                    item.label === "Gender" && "capitalize"
+                  )}
+                >
+                  {item.value}
+                  {item.label === "Gender" &&
+                    ["male", "female"].includes(item.value) &&
+                    (item.value === "male" ? (
+                      <GenderMale
+                        width={14}
+                        height={14}
+                        className="text-white ms-1"
+                      />
+                    ) : (
+                      <GenderFemale
+                        width={14}
+                        height={14}
+                        className="text-white ms-1"
+                      />
+                    ))}
+                </Text>
+              </li>
+            ))}
+          </ul>
+        </Card>
+
+        <Card header="Appreance" className="w-full">
+          <ul className="flex flex-col mt-[0.375rem] gap-[0.375rem]">
+            {appreance.map((item, index) => (
+              <li
+                key={`appreance_${index}`}
+                className="flex text-sm justify-between"
+              >
+                <Text className="tracking-[-0.035rem] opacity-70">
+                  {item.label}
+                </Text>
+                <Text
+                  slot="description"
+                  className="tracking-[-0.0175rem] capitalize"
+                >
+                  {item.value}
+                </Text>
+              </li>
+            ))}
+          </ul>
+        </Card>
 
         <Card header="Customize" className="w-full">
           <Toolbar

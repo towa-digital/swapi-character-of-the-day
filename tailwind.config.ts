@@ -14,10 +14,10 @@ const config: Config = {
         primary: "#72FFF7",
       },
       backgroundImage: {
-        "landscape-1": "url('/images/landscape-1.jpg'), linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 57.41%)",
-        "landscape-2": "url('/images/landscape-1.jpg'), linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 57.41%)",
-        "planet-1": "url('/images/planet-1.jpg'), linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 57.41%)",
-        "planet-2": "url('/images/planet-2.jpg'), linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 57.41%)",
+        "landscape-1": "url('/images/landscape-1.jpg')",
+        "landscape-2": "url('/images/landscape-1.jpg')",
+        "planet-1": "url('/images/planet-1.jpg')",
+        "planet-2": "url('/images/planet-2.jpg')",
       },
       fontFamily: {
         sans: ["var(--font-space-grotesk)"],
