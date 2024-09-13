@@ -1,5 +1,4 @@
 import {
-  MenuTrigger,
   Button,
   ColorSwatch,
   Popover,
