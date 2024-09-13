@@ -1,8 +1,8 @@
 "use client";
 
-import Character from "@/components/Character";
-import Dropdown from "@/components/Dropdown";
-import ColorPicker from "@/components/ColorPicker";
+import Character from "@/components/characters/Character";
+import Dropdown from "@/components/ui/Dropdown";
+import ColorPicker from "@/components/ui/ColorPicker";
 import { calcAverageRgb } from "@/utils/colors";
 import { SwapiPeople } from "@types";
 import clsx from "clsx";
@@ -20,10 +20,10 @@ import {
   validateCookie,
 } from "@/app/characterOfTheDayActions";
 import ImageSquare from "@/icons/ImageSquare";
-import Button from "@/components/Button";
+import Button from "@/components/ui/Button";
 import UserSwitch from "@/icons/UserSwitch";
 import Image from "next/image";
-import Card from "./Card";
+import Card from "@/components/ui/Card";
 
 export default function CharacterOfTheDay({
   character,
@@ -105,7 +105,10 @@ export default function CharacterOfTheDay({
                   <Text className="tracking-[-0.035rem] opacity-70">
                     {item.label}
                   </Text>
-                  <Text slot="description" className="tracking-[-0.0175rem]">
+                  <Text
+                    slot="description"
+                    className="tracking-[-0.0175rem] capitalize"
+                  >
                     {item.value}
                   </Text>
                 </li>
@@ -129,11 +132,13 @@ export default function CharacterOfTheDay({
               onChange={setColorShoes}
               label="Shoes"
             />
-            <ColorPicker
-              color={colorPants}
-              onChange={setColorPants}
-              label="Pants"
-            />
+            {character.gender === "male" && (
+              <ColorPicker
+                color={colorPants}
+                onChange={setColorPants}
+                label="Pants"
+              />
+            )}
           </Toolbar>
         </Card>
       </div>
