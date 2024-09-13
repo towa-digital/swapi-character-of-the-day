@@ -132,13 +132,11 @@ export default function CharacterOfTheDay({
               onChange={setColorShoes}
               label="Shoes"
             />
-            {character.gender === "male" && (
-              <ColorPicker
-                color={colorPants}
-                onChange={setColorPants}
-                label="Pants"
-              />
-            )}
+            <ColorPicker
+              color={colorPants}
+              onChange={setColorPants}
+              label="Pants"
+            />
           </Toolbar>
         </Card>
       </div>
@@ -154,8 +152,8 @@ export default function CharacterOfTheDay({
             pants: colorPants.toString(),
           }}
           gender={character.gender}
-          className="w-full h-80"
           scaleXFactor={getScaleXFactor(character.height, character.mass)}
+          className="[&>svg]:h-[40rem]"
         />
       </div>
 

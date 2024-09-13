@@ -41,8 +41,7 @@ export default function CharacterWrapper({
       }}
       className={className}
     >
-      {gender === "male" && <MaleCharacter />}
-      {gender === "female" && <FemaleCharacter />}
+      {gender === "female" ? <FemaleCharacter /> : <MaleCharacter />}
     </figure>
   );
 }
