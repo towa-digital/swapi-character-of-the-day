@@ -85,7 +85,7 @@ export default function CharacterOfTheDay({
         )}
       />
 
-      <div className="app-layout p-8 size-full max-w-screen-lg mx-auto">
+      <div className="app-layout p-8 size-full max-w-screen-xl mx-auto">
         <div className="[grid-area:header] gap-4 flex justify-center lg:justify-start items-center flex-col lg:gap-20 lg:flex-row">
           <Image
             src="/images/logo.svg"
@@ -97,7 +97,7 @@ export default function CharacterOfTheDay({
           <span className="w-full h-px bg-gradient-to-r from-transparent via-primary to to-transparent" />
         </div>
 
-        <h1 className="[grid-area:character] lg:[grid-area:title] hyphens-auto text-center text-[6.5rem] [word-break:break-word] text-primary my-auto lg:text-start lg:text-[8.75rem] font-light leading-[0.9] lg:tracking-[-0.6125rem]">
+        <h1 className="[grid-area:character] lg:[grid-area:title] hyphens-auto text-center text-[6.5rem] [word-break:break-word] lg:break-words text-primary my-auto lg:text-start lg:text-[8.75rem] font-light leading-[0.9] lg:tracking-[-0.6125rem]">
           {character.name}
         </h1>
 
