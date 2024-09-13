@@ -35,8 +35,6 @@ export const getScaleXFactor = (height: string, mass: string) => {
       return 1;
     }
 
-    console.log((parsedMass / ((parsedHeight * parsedHeight) / 100)) * 100);
-
     return findScaleFatorByBMI(
       (parsedMass / ((parsedHeight * parsedHeight) / 100)) * 100
     );

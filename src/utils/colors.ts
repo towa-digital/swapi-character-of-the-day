@@ -54,10 +54,12 @@ export function calcAverageRgb(colors: string): string {
 
     return rgbToHex(avgRgb);
   } catch (error) {
-    if (error instanceof Error) {
-      console.error(error.message);
-    } else {
-      console.error("An error occurred while calculating the average color");
+    if (process.env.NODE_ENV === "development") {
+      if (error instanceof Error) {
+        console.error(error.message);
+      } else {
+        console.error("An error occurred while calculating the average color");
+      }
     }
     return "black";
   }
