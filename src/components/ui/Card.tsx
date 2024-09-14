@@ -9,7 +9,7 @@ export default function Card({
   return (
     <article
       className={clsx(
-        "p-4 bg-[#616161]/20 rounded-lg flex flex-col",
+        "p-4 bg-[#616161]/20 rounded-lg flex flex-col backdrop-blur-[20px]",
         className
       )}
     >
