@@ -16,6 +16,9 @@ First, run the development server:
 # If `nvm` is installed, run this command to get the correct node version
 nvm use
 
+# Install packages
+npm install
+
 # Start local server
 npm run dev
 ```
