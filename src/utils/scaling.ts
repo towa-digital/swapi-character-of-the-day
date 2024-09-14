@@ -1,4 +1,4 @@
-const findScaleFatorByBMI = (bmi: number) => {
+const findScaleFactorByBMI = (bmi: number) => {
   if (bmi < 18.5) {
     return 0.5;
   }
@@ -35,7 +35,7 @@ export const getScaleXFactor = (height: string, mass: string) => {
       return 1;
     }
 
-    return findScaleFatorByBMI(
+    return findScaleFactorByBMI(
       (parsedMass / ((parsedHeight * parsedHeight) / 100)) * 100
     );
   } catch (error) {
