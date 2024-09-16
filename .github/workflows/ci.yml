@@ -3,11 +3,16 @@ name: Test & Deploy
 on:
   pull_request:
     branches:
-      - dev
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write  # Required to push packages (Docker images)
+      id-token: write  # Required for OIDC authentication (if needed)
 
     steps:
       - name: Checkout code
@@ -24,17 +29,18 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Build Docker image
-        if: success()
-        run: docker build -t your-dockerhub-username/your-project:${{ github.sha }} .
-
-      - name: Log in to DockerHub
+      - name: Log in to GitHub Container Registry
         if: success()
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Push Docker image
+      - name: Build and push Docker image
         if: success()
-        run: docker push your-dockerhub-username/your-project:${{ github.sha }}
+        run: |
+          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/${{ github.repository }}
+          IMAGE_TAG=${{ github.sha }}
+          docker build -t $IMAGE_NAME:$IMAGE_TAG .
+          docker push $IMAGE_NAME:$IMAGE_TAG
